@@ -1,0 +1,15 @@
+LPARENT=1
+RPARENT=2
+MULT=3
+POW=4
+DIV=5
+MINUS=6
+ADD=7
+NUMBER=8
+WS=9
+'('=1
+')'=2
+'*'=3
+'/'=5
+'-'=6
+'+'=7
