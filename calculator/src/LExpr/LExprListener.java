@@ -18,18 +18,6 @@ public interface LExprListener extends ParseTreeListener {
 	 */
 	void exitS(LExprParser.SContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link LExprParser#e}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumber(LExprParser.NumberContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link LExprParser#e}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumber(LExprParser.NumberContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code Parent}
 	 * labeled alternative in {@link LExprParser#e}.
 	 * @param ctx the parse tree
@@ -77,6 +65,18 @@ public interface LExprListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPow(LExprParser.PowContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Double}
+	 * labeled alternative in {@link LExprParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void enterDouble(LExprParser.DoubleContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Double}
+	 * labeled alternative in {@link LExprParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void exitDouble(LExprParser.DoubleContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code MultOrDiv}
 	 * labeled alternative in {@link LExprParser#e}.

@@ -17,7 +17,7 @@ public class LExprParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		LPARENT=1, RPARENT=2, MULT=3, POW=4, DIV=5, MINUS=6, ADD=7, NUMBER=8, 
+		LPARENT=1, RPARENT=2, MULT=3, POW=4, DIV=5, MINUS=6, ADD=7, DOUBLE=8, 
 		WS=9;
 	public static final int
 		RULE_s = 0, RULE_e = 1;
@@ -36,7 +36,7 @@ public class LExprParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "LPARENT", "RPARENT", "MULT", "POW", "DIV", "MINUS", "ADD", "NUMBER", 
+			null, "LPARENT", "RPARENT", "MULT", "POW", "DIV", "MINUS", "ADD", "DOUBLE", 
 			"WS"
 		};
 	}
@@ -149,24 +149,6 @@ public class LExprParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class NumberContext extends EContext {
-		public TerminalNode NUMBER() { return getToken(LExprParser.NUMBER, 0); }
-		public NumberContext(EContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof LExprListener ) ((LExprListener)listener).enterNumber(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof LExprListener ) ((LExprListener)listener).exitNumber(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof LExprVisitor ) return ((LExprVisitor<? extends T>)visitor).visitNumber(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
 	public static class ParentContext extends EContext {
 		public TerminalNode LPARENT() { return getToken(LExprParser.LPARENT, 0); }
 		public EContext e() {
@@ -260,6 +242,24 @@ public class LExprParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
+	public static class DoubleContext extends EContext {
+		public TerminalNode DOUBLE() { return getToken(LExprParser.DOUBLE, 0); }
+		public DoubleContext(EContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LExprListener ) ((LExprListener)listener).enterDouble(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LExprListener ) ((LExprListener)listener).exitDouble(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof LExprVisitor ) return ((LExprVisitor<? extends T>)visitor).visitDouble(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class MultOrDivContext extends EContext {
 		public Token op;
 		public List<EContext> e() {
@@ -330,13 +330,13 @@ public class LExprParser extends Parser {
 				match(RPARENT);
 				}
 				break;
-			case NUMBER:
+			case DOUBLE:
 				{
-				_localctx = new NumberContext(_localctx);
+				_localctx = new DoubleContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(13);
-				match(NUMBER);
+				match(DOUBLE);
 				}
 				break;
 			default:

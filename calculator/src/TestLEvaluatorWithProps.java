@@ -51,8 +51,8 @@ public class TestLEvaluatorWithProps {
                 setValue(ctx, left - right);
         }
 
-        public void exitNumber(LExprParser.NumberContext ctx) {
-            String numberText = ctx.NUMBER().getText();
+        public void exitNumber(LExprParser.DoubleContext ctx) {
+            String numberText = ctx.DOUBLE().getText();
             setValue(ctx, Double.parseDouble(numberText));
         }
 

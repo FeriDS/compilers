@@ -17,7 +17,7 @@ public class LExprLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		LPARENT=1, RPARENT=2, MULT=3, POW=4, DIV=5, MINUS=6, ADD=7, NUMBER=8, 
+		LPARENT=1, RPARENT=2, MULT=3, POW=4, DIV=5, MINUS=6, ADD=7, DOUBLE=8, 
 		WS=9;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
@@ -29,7 +29,7 @@ public class LExprLexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"LPARENT", "RPARENT", "MULT", "POW", "DIV", "MINUS", "ADD", "NUMBER", 
+			"LPARENT", "RPARENT", "MULT", "POW", "DIV", "MINUS", "ADD", "DOUBLE", 
 			"WS", "DIGIT"
 		};
 	}
@@ -43,7 +43,7 @@ public class LExprLexer extends Lexer {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "LPARENT", "RPARENT", "MULT", "POW", "DIV", "MINUS", "ADD", "NUMBER", 
+			null, "LPARENT", "RPARENT", "MULT", "POW", "DIV", "MINUS", "ADD", "DOUBLE", 
 			"WS"
 		};
 	}

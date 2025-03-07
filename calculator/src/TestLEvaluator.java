@@ -6,40 +6,51 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/tpantlr2 for more book information.
 ***/
+import LExpr.*;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
-import LExpr.*;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.*;
 
-public class TestLEvalVisitor {
-    // a4 -visitor Expr.g4
-    /** Visitor "calculator" */
-    public static class EvalVisitor extends LExprBaseVisitor<Double> {
-        public Double visitMultOrDiv(LExprParser.MultOrDivContext ctx) {
+public class TestLEvaluator {
+    /** Sample "calculator" */
+    public static class Evaluator extends LExprBaseListener {
+        Stack<Double> stack = new Stack<Double>();
+
+        public void exitMultOrDiv(LExprParser.MultOrDivContext ctx) {
+            double right = stack.pop();
+            double left = stack.pop();
             if (ctx.op.getType() == LExprParser.MULT)
-                return visit(ctx.e(0)) * visit(ctx.e(1));
+                stack.push(left * right);
             else
-                return visit(ctx.e(0)) / visit(ctx.e(1));
+                stack.push(left / right);
         }
 
-        public Double visitNegNumber(LExprParser.NegNumberContext ctx) {
-            return -visit(ctx.e());
+        public void exitNegNumber(LExprParser.NegNumberContext ctx) {
+            stack.push(-stack.pop());
         }
 
-        public Double visitAddOrMinus(LExprParser.AddOrMinusContext ctx) {
+        public void exitPow(LExprParser.PowContext ctx) {
+            double right = stack.pop();
+            double left = stack.pop();
+            stack.push(Math.pow(left, right));
+        }
+
+
+        public void exitAddOrMinus(LExprParser.AddOrMinusContext ctx) {
+            double right = stack.pop();
+            double left = stack.pop();
             if (ctx.op.getType() == LExprParser.ADD)
-                return visit(ctx.e(0)) + visit(ctx.e(1));
+                stack.push(left + right);
             else
-                return visit(ctx.e(0)) - visit(ctx.e(1));
+                stack.push(left - right);
         }
 
-        public Double visitPow(LExprParser.PowContext ctx) {
-            return Math.pow(visit(ctx.e(0)), visit(ctx.e(1)));
+        public void exitDouble(LExprParser.DoubleContext ctx) {
+            stack.push(Double.parseDouble(ctx.DOUBLE().getText()));
         }
-
     }
 
     public static void main(String[] args) throws Exception {
@@ -53,9 +64,11 @@ public class TestLEvalVisitor {
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             LExprParser parser = new LExprParser(tokens);
             ParseTree tree = parser.s();
-            EvalVisitor evalVisitor = new EvalVisitor();
-            double result = evalVisitor.visit(tree);
-            System.out.println("visitor result = " + result);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            Evaluator eval = new Evaluator();
+            walker.walk(eval, tree);
+            System.out.println("Input = " + input);
+            System.out.println("stack result = " + eval.stack.pop());
         }
         catch (java.io.IOException e) {
             System.out.println(e);

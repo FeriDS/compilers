@@ -7,7 +7,7 @@ e : MINUS e                 # NegNumber
   | LPARENT e RPARENT       # Parent
   | e op=(MULT|DIV) e       # MultOrDiv
   | e op=(ADD|MINUS) e      # AddOrMinus
-  | NUMBER                  # Number
+  | DOUBLE                  # Double
 
   ;
 
@@ -20,7 +20,7 @@ POW: ('^'|'**') ;
 DIV : '/' ;
 MINUS: '-' ;
 ADD : '+' ;
-NUMBER : DIGIT+ | DIGIT* ('.' DIGIT | DIGIT '.') DIGIT* ;
+DOUBLE : DIGIT+ | DIGIT* ('.' DIGIT | DIGIT '.') DIGIT* ;
 WS : [ \t\n]+ -> skip ;
 
 fragment

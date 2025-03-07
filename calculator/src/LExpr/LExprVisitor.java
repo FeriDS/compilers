@@ -17,13 +17,6 @@ public interface LExprVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitS(LExprParser.SContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code Number}
-	 * labeled alternative in {@link LExprParser#e}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumber(LExprParser.NumberContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code Parent}
 	 * labeled alternative in {@link LExprParser#e}.
 	 * @param ctx the parse tree
@@ -51,6 +44,13 @@ public interface LExprVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPow(LExprParser.PowContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Double}
+	 * labeled alternative in {@link LExprParser#e}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDouble(LExprParser.DoubleContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code MultOrDiv}
 	 * labeled alternative in {@link LExprParser#e}.
