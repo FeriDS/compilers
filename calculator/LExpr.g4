@@ -3,8 +3,8 @@ grammar LExpr;
 s : e ;
 
 e : MINUS e                 # NegNumber
-  | <assoc=right> e POW e    # Pow
   | LPARENT e RPARENT       # Parent
+  | <assoc=right> e POW e    # Pow
   | e op=(MULT|DIV) e       # MultOrDiv
   | e op=(ADD|MINUS) e      # AddOrMinus
   | DOUBLE                  # Double

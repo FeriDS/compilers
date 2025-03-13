@@ -44,8 +44,10 @@ public class TestLEvaluator {
             double left = stack.pop();
             if (ctx.op.getType() == LExprParser.ADD)
                 stack.push(left + right);
-            else
+            else {
+                System.out.println("uwu");
                 stack.push(left - right);
+            }
         }
 
         public void exitDouble(LExprParser.DoubleContext ctx) {

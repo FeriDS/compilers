@@ -51,7 +51,7 @@ public class TestLEvaluatorWithProps {
                 setValue(ctx, left - right);
         }
 
-        public void exitNumber(LExprParser.DoubleContext ctx) {
+        public void exitDouble(LExprParser.DoubleContext ctx) {
             String numberText = ctx.DOUBLE().getText();
             setValue(ctx, Double.parseDouble(numberText));
         }
@@ -84,6 +84,7 @@ public class TestLEvaluatorWithProps {
             ParseTreeWalker walker = new ParseTreeWalker();
             EvaluatorWithProps evalProp = new EvaluatorWithProps();
             walker.walk(evalProp, tree);
+            System.out.println("Input: " + input);
             System.out.println("properties result = " + evalProp.getValue(tree));
         }
         catch (java.io.IOException e) {

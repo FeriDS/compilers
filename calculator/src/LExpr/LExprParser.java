@@ -1,4 +1,4 @@
-// Generated from /home/feri/Documents/compilers/T08-code/LExpr.g4 by ANTLR 4.13.2
+// Generated from /home/feri/Documents/compilers/calculator/LExpr.g4 by ANTLR 4.13.2
 package LExpr;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -359,11 +359,11 @@ public class LExprParser extends Parser {
 						_localctx = new PowContext(new EContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_e);
 						setState(16);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(17);
 						match(POW);
 						setState(18);
-						e(5);
+						e(4);
 						}
 						break;
 					case 2:
@@ -438,7 +438,7 @@ public class LExprParser extends Parser {
 	private boolean e_sempred(EContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 5);
+			return precpred(_ctx, 4);
 		case 1:
 			return precpred(_ctx, 3);
 		case 2:
@@ -462,8 +462,8 @@ public class LExprParser extends Parser {
 		"\u0001\u0000\u000b\f\u0005\u0002\u0000\u0000\f\u000f\u0001\u0000\u0000"+
 		"\u0000\r\u000f\u0005\b\u0000\u0000\u000e\u0006\u0001\u0000\u0000\u0000"+
 		"\u000e\t\u0001\u0000\u0000\u0000\u000e\r\u0001\u0000\u0000\u0000\u000f"+
-		"\u001b\u0001\u0000\u0000\u0000\u0010\u0011\n\u0005\u0000\u0000\u0011\u0012"+
-		"\u0005\u0004\u0000\u0000\u0012\u001a\u0003\u0002\u0001\u0005\u0013\u0014"+
+		"\u001b\u0001\u0000\u0000\u0000\u0010\u0011\n\u0004\u0000\u0000\u0011\u0012"+
+		"\u0005\u0004\u0000\u0000\u0012\u001a\u0003\u0002\u0001\u0004\u0013\u0014"+
 		"\n\u0003\u0000\u0000\u0014\u0015\u0007\u0000\u0000\u0000\u0015\u001a\u0003"+
 		"\u0002\u0001\u0004\u0016\u0017\n\u0002\u0000\u0000\u0017\u0018\u0007\u0001"+
 		"\u0000\u0000\u0018\u001a\u0003\u0002\u0001\u0003\u0019\u0010\u0001\u0000"+
